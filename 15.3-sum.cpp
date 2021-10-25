@@ -15,18 +15,33 @@ public:
     vector<vector<int>> threeSum(vector<int>& nums) {
         vector<vector<int>> results;
         int size = nums.size();
-        unordered_multimap<int,size_t> hashmap;
-        for(size_t i = 0; i < size ; ++i)
-            hashmap.emplace(nums.at(i),i);
-        for(size_t i = 0; i < size - 2; ++i){
-            int sum2target = 0 - nums.at(i);
-            for(size_t j = i + 1 ; j < size - 1; ++j){
-                int finalTarget = sum2target - nums.at(j);
-                auto range = hashmap.equal_range(finalTarget);
-                for_each(range.first,range.second,[&](const pair<int,size_t> &pair){
-                    if(pair.second > j)
-                        results.push_back({nums.at(i), nums.at(j), pair.first});
-                });
+        if(size < 3) return results;
+        std::sort(nums.begin(),nums.end());
+        for(size_t i = 0; i < size; ++i){
+            if(nums.at(i) > 0) break;
+            if(i == 0 || (i > 0 && nums.at(i) != nums.at(i - 1))){
+                size_t lower_bound = i + 1;
+                size_t upper_bound = size - 1;
+                int sum = 0 - nums.at(i);
+                while(lower_bound < upper_bound){
+                    if(nums[lower_bound] + nums[upper_bound] == sum){
+                        results.push_back({nums.at(i),nums.at(lower_bound),nums.at(upper_bound)});
+                        while(lower_bound < upper_bound && nums[lower_bound] == nums[lower_bound + 1]){
+                            lower_bound++;
+                        }
+                        while(lower_bound < upper_bound && nums[upper_bound - 1] == nums[upper_bound]){
+                            upper_bound--;
+                        }
+                        lower_bound++;
+                        upper_bound--;
+                    }
+                    else if(nums[lower_bound] + nums[upper_bound] < sum){
+                        lower_bound++;
+                    }
+                    else{
+                        upper_bound--;
+                    }
+                }
             }
         }
         return results;
