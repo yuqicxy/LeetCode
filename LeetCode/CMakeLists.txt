@@ -7,3 +7,4 @@ project ("LeetCode")
 
 # Include sub-projects.
 add_subdirectory ("Median of two sorted array")
+add_subdirectory ("70_climbing_stairs")
