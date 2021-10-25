@@ -2,7 +2,9 @@
  * @lc app=leetcode id=169 lang=cpp
  *
  * [169] Majority Element
+ * 
  * Algorithm: A Linear Time Majority Vote Algorithm(https://www.cs.utexas.edu/~moore/best-ideas/mjrty/index.html)
+ * 
  * Leetcode:https://leetcode.com/problems/majority-element/
  */
 
