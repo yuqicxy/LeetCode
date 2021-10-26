@@ -43,26 +43,16 @@ public:
     // Recursive
     // ****************************
     ListNode* reverseList(ListNode* head) {
-        return recursive(nullptr,head);
+        if(head != nullptr && head->next != nullptr)
+        {
+            ListNode* node = reverseList(head->next);
+            head->next->next = head;
+            head->next = nullptr;
+            return node;
+        }
+        return head;
     }
 
-    ListNode* recursive(ListNode *prev,ListNode *curr){
-        ListNode *newHead = nullptr;
-        if(curr != nullptr)
-        {
-            if(curr->next != nullptr)
-            {
-                newHead = recursive(curr,curr->next);
-                curr->next = prev;
-            }
-            else
-            {
-                newHead = curr;
-                newHead->next = prev;
-            }
-        }
-        return newHead;
-    }
 };
 // @lc code=end
 
