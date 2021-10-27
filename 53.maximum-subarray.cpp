@@ -53,7 +53,5 @@ public:
         }
         return globalSum;
     }
-
 };
 // @lc code=end
-

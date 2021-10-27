@@ -30,8 +30,9 @@ public:
 };
 // @lc code=end
 
-void main(){
+int main(){
     Solution s;
-    // cout<<s.maxSubArray(input);
-    return;
+    std::vector<int> input= {1,-12,3,-4,5,-21};
+    cout<<s.maxSubArray(input);
+    return 1;
 }
