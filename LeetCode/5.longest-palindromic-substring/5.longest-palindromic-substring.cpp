@@ -23,7 +23,7 @@ public:
      * @return string 
      */
     string longestPalindrome(string s) {
-        if(s.size() < 2) return s;
+        if(s.length() < 2) return s;
 
         vector<char> oddS;
         oddS.push_back('#');
@@ -44,7 +44,7 @@ public:
             {
                 radius++;
             }
-            radius = radius-1;
+            radius--;
             if(radius > maxSize){
                 maxSize = radius;
                 maxSizeCenter = center;
