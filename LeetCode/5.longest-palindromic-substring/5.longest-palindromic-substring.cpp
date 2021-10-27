@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <iostream>
 
 using namespace std;
 class Solution {
@@ -22,7 +23,7 @@ public:
      * @return string 
      */
     string longestPalindrome(string s) {
-        if(s.length() < 2) return s;
+        if(s.size() < 2) return s;
 
         vector<char> oddS;
         oddS.push_back('#');
@@ -31,7 +32,7 @@ public:
             oddS.push_back('#');
         }
 
-        int maxSize = -1;
+        int maxSize = 0;
         int maxSizeCenter = 0;
 
         int size = oddS.size();
@@ -63,3 +64,7 @@ public:
 };
 // @lc code=end
 
+int main(){
+    Solution s;
+    std::cout<<s.longestPalindrome("a");
+}
