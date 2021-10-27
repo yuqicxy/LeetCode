@@ -11,7 +11,7 @@ class Solution {
 public:
     /**
      * @brief recursive method
-     * 
+     *  high time complexity
      * @param m 
      * @param n 
      * @return int 
@@ -21,6 +21,17 @@ public:
     //         return 1;
     //     return uniquePaths(m,n-1) + uniquePaths(m-1,n);        
     // }
+
+    /**
+     * @brief dynamic programming solution
+     * 
+     * @param m 
+     * @param n 
+     * @return int 
+     */
+    int uniquePaths(int m, int n) {
+        
+    }
 };
 // @lc code=end
 
