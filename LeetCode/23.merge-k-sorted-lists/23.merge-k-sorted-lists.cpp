@@ -91,10 +91,10 @@ int main(){
     for (auto &&linkList : input)
     {
         if(linkList.empty()) continue;
-        ListNode *tail = new ListNode(linkList.at(0));
-        ListNode *dummy = new ListNode(0,tail);
-        for(int i = 1; i < linkList.size(); ++i){
-            tail->next = new ListNode(linkList.at(i));
+        ListNode *dummy = new ListNode(0);
+        ListNode *tail = dummy;
+        for(auto && val : linkList){
+            tail->next = new ListNode(val);
             tail = tail->next;
         }
         lists.push_back(dummy->next);
