@@ -60,7 +60,35 @@ using namespace std;
 //     }
 // };
 
+/*
 
+| 1 | 1 | 1 |
+| 1 | 1 | 1 |
+| 1 | 1 | 1 |
+左下角最大边长为3的条件: 
+    dp[i][j] != 1,
+    dp[i-1][j] == 2,
+    dp[i][j-1] == 2,
+    dp[i-1][j-1] ==2
+
+| 1 | 1 | 1 |
+| 0 | 1 | 1 |
+| 1 | 1 | 1 |
+当坐下角最大边长为2时，
+则 dp[i-1][j]，dp[i][j-1]，dp[i-1][j-1]最大边长至少有一个为1
+
+
+则dp方程为
+若matrix[i][j] != 0,
+dp[i][j] = min(dp[i-1][j],min(dp[i],[j-1],dp[i-1][j-1])) + 1
+
+若matrix[i][k] == 0, dp[i][j] = 0
+
+边界条件：
+若i或j有一个为0，则dp[i][j] = matrix[i][j] - '0',
+
+
+*/
 class Solution {
 public:
     int maximalSquare(vector<vector<char>>& matrix) {
