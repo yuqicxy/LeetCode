@@ -1,0 +1,1 @@
+﻿add_executable (42.trapping-rain-water "42.trapping-rain-water.cpp")
