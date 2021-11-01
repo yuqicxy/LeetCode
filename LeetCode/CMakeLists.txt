@@ -8,6 +8,7 @@ project ("LeetCode")
 # Include sub-projects.
 add_subdirectory ("Median of two sorted array")
 add_subdirectory("5.longest-palindromic-substring")
+add_subdirectory("17.letter-combinations-of-a-phone-number")
 add_subdirectory("20.valid-parentheses")
 add_subdirectory("23.merge-k-sorted-lists")
 add_subdirectory("53.maximum-subarray")
