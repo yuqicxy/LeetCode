@@ -1,0 +1,1 @@
+﻿add_executable (230.kth-smallest-element-in-a-bst "230.kth-smallest-element-in-a-bst.cpp")
