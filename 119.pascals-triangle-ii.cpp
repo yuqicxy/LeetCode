@@ -5,7 +5,6 @@
  */
 
 // @lc code=start
-#include <list>
 #include <vector>
 
 using namespace std;
