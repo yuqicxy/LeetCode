@@ -1,7 +1,10 @@
 .vs/
-
 .vscode/
 
-LeetCode/out/*
+# CPP
+out/*
+build/*
 
-LeetCode/build/*
+# Typescript
+typescript/dist/*
+typescript/node_modules/*
