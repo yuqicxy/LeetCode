@@ -62,4 +62,7 @@ public:
     }
 };
 // @lc code=end
-
+int main(){
+    Solution s;
+    s.longestPalindrome("a");
+}

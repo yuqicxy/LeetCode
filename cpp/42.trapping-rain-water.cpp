@@ -37,3 +37,8 @@ public:
 };
 // @lc code=end
 
+int main(){
+    Solution s;
+    std::vector<int> test = {0,1,0,2,1,0,1,3,2,1,2,1};
+    s.trap(test);
+}

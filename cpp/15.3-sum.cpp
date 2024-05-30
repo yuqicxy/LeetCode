@@ -50,3 +50,8 @@ public:
 };
 // @lc code=end
 
+int main(){
+    Solution s;
+    s.threeSum({-1,0,1,2,-1,-4});
+}
+

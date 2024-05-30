@@ -37,3 +37,7 @@ public:
 };
 // @lc code=end
 
+int main(){
+    Solution solu;
+    std::cout << solu.isValid("(]");
+}

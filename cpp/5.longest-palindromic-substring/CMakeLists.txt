@@ -1,1 +1,0 @@
-add_executable (5.longest-palindromic-substring "5.longest-palindromic-substring.cpp")

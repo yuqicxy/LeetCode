@@ -1,1 +1,0 @@
-add_executable (23.merge-k-sorted-lists "23.merge-k-sorted-lists.cpp")

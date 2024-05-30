@@ -31,3 +31,8 @@ public:
 };
 // @lc code=end
 
+int main(){
+    Solution s;
+    auto nums = std::vector<int>({2,7,11,15});
+    s.twoSum(nums,9);
+}

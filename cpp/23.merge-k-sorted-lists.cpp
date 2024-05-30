@@ -5,19 +5,23 @@
  */
 
 // @lc code=start
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode() : val(0), next(nullptr) {}
- *     ListNode(int x) : val(x), next(nullptr) {}
- *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
- */
+
+
 
 #include <vector>
+#include <queue>
+#include <iostream>
+
 using namespace std;
+
+// Definition for singly-linked list.
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
 class Solution {
 public:
@@ -84,3 +88,28 @@ public:
 };
 // @lc code=end
 
+int main(){
+    vector<vector<int>> input = {{1,4,5},{1,3,4},{2,6}};
+    std::vector<ListNode*> lists;
+    for (auto &&linkList : input)
+    {
+        if(linkList.empty()) continue;
+        ListNode *dummy = new ListNode(0);
+        ListNode *tail = dummy;
+        for(auto && val : linkList){
+            tail->next = new ListNode(val);
+            tail = tail->next;
+        }
+        lists.push_back(dummy->next);
+        delete dummy;
+    }
+    
+    Solution s;
+    ListNode* node = s.mergeKLists(lists);
+    while(node != nullptr){
+        cout<<node->val<<"  ";
+        node = node->next;
+    }
+
+    return 1;
+}

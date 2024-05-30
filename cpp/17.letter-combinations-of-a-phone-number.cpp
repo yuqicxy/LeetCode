@@ -45,3 +45,7 @@ public:
 };
 // @lc code=end
 
+int main(){
+    Solution s;
+    s.letterCombinations("23");
+}

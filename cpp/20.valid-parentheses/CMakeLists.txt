@@ -1,1 +1,0 @@
-add_executable (20.valid-parentheses "20.valid-parentheses.cpp")
