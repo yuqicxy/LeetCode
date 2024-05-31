@@ -4,6 +4,7 @@
  * [2] Add Two Numbers
  */
 
+#include "common/ListNode.h"
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -41,4 +42,16 @@ public:
     }
 };
 // @lc code=end
+#include <vector>
+#include <iostream>
 
+int main(){
+    // Input: l1 = [2,4,3], l2 = [5,6,4]
+    // Output: [7,0,8]
+    // Explanation: 342 + 465 = 807.
+    auto l2 = new ListNode({5,6,4});
+    auto l1 = new ListNode({2,4,3});
+
+    Solution s;
+    std::cout<<s.addTwoNumbers(l1,l2);
+}
