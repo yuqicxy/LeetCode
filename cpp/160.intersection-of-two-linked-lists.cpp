@@ -4,6 +4,8 @@
  * [160] Intersection of Two Linked Lists
  */
 
+#include "common/ListNode.h"
+
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -13,9 +15,10 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
 class Solution {
 public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+    ListNode* getIntersectionNode(ListNode *headA, ListNode *headB) {
         ListNode *A = headA;
         ListNode *B = headB;
         while(A != B)
@@ -28,3 +31,6 @@ public:
 };
 // @lc code=end
 
+int main(){
+    return 0;
+}

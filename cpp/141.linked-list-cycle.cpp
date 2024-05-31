@@ -3,7 +3,7 @@
  *
  * [141] Linked List Cycle
  */
-
+#include "common/ListNode.h"
 // @lc code=start
 /**
  * Definition for singly-linked list.
@@ -13,12 +13,6 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-
-struct ListNode {
-    int val;
-    ListNode *next;
-    ListNode(int x) : val(x), next(nullptr) {}
-};
 
 class Solution {
 public:
@@ -57,3 +51,6 @@ public:
 };
 // @lc code=end
 
+int main(){
+    return 0;
+}

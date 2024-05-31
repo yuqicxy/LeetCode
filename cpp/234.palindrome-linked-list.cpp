@@ -3,7 +3,7 @@
  *
  * [234] Palindrome Linked List
  */
-
+#include "common/ListNode.h"
 // @lc code=start
 /**
  * Definition for singly-linked list.

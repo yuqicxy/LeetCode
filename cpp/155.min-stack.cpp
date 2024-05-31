@@ -50,3 +50,15 @@ private:
  * int param_4 = obj->getMin();
  */
 // @lc code=end
+
+
+int main(){
+    MinStack minStack;
+    minStack.push(-2);
+    minStack.push(0);
+    minStack.push(-3);
+    minStack.getMin(); // return -3
+    minStack.pop();
+    minStack.top();    // return 0
+    minStack.getMin(); // return -2
+}
