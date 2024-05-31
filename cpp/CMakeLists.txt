@@ -5,6 +5,7 @@ foreach(file ${sourceFiles})
     get_filename_component(problem ${file} NAME_WLE)
     message("add " ${problem})
     add_executable(${problem} ${file})
+    target_include_directories(${problem} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 endforeach()
 
 
