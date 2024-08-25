@@ -13,10 +13,7 @@ public:
         unordered_set<int> set1{nums1.begin(),nums1.end()};
         unordered_set<int> set2{nums2.begin(),nums2.end()};
 
-        vector<vector<int>> result;
-        result.push_back(implement(set1,set2));
-        result.push_back(implement(set2,set1));
-        return result;
+        return {implement(set1,set2),implement(set2,set1)};
     }
 
     vector<int> implement(unordered_set<int>& nums, unordered_set<int>& dict){
