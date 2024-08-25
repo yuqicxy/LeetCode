@@ -11,17 +11,17 @@ using namespace std;
 class Solution {
 public:
     string removeStars(string s) {
-        deque<char> stk;
+        string result;
         for(string::size_type i = 0;i < s.size(); ++i){
             if(s[i] != '*'){
-                stk.push_back(s[i]);
+                result += s[i];
                 continue;
             }
-            if(!stk.empty())
-                stk.pop_back();
+            if(!result.empty())
+                result.pop_back();
         }
 
-        return string(stk.begin(),stk.end());
+        return result;
     }
 };
 // @lc code=end
