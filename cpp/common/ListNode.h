@@ -21,10 +21,10 @@ struct ListNode {
         }
     }
 
-    ~ListNode(){
-        if(next != nullptr)
-            delete next;
-    }
+    // ~ListNode(){
+    //     if(next != nullptr)
+    //         delete next;
+    // }
 
     friend std::ostream& operator<<(std::ostream& os, const ListNode* node){
         os<<"[";
