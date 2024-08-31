@@ -3,6 +3,7 @@
  *
  * [9] Palindrome Number
  */
+#include<iostream>
 #include<vector>
 // @lc code=start
 class Solution {
@@ -26,8 +27,6 @@ public:
     }
 };
 // @lc code=end
-
-#include<iostream>
 int main(){
     Solution s;
     std::cout << std::boolalpha;
