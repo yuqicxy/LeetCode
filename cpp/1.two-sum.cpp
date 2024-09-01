@@ -8,7 +8,7 @@
 #include <unordered_map>
 using namespace std;
 
-class Solution {
+class SolutionQi {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
         std::vector<int> result;
@@ -27,6 +27,20 @@ public:
             }
         }
         return result;
+    }
+};
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        std::unordered_map<int,int> hashmap;
+        for(int i = 0; i < nums.size(); ++i){
+            int value = target - nums[i];
+            if(hashmap.count(value))
+                return {i,hashmap[value]};
+            hashmap[nums[i]] = i;
+        }
+        return {};
     }
 };
 // @lc code=end
