@@ -6,6 +6,8 @@
 #include <vector>
 #include <queue>
 #include <tuple>
+#include <limits>
+#include <iostream>
 using namespace std;
 // @lc code=start
 class Solution {
@@ -34,9 +36,9 @@ public:
         const size_t dimX = maze.size();
         const size_t dimY = maze[0].size();
         Position initialPos{entrance[0],entrance[1],0};
-        maze[initialPos.x][initialPos.y] = '+';
-        queue<Position> queue; queue.push(initialPos);
-        vector<Position> exitList;
+        queue<Position> queue; 
+        queue.push(initialPos);
+        Position bestExit{0,0,static_cast<unsigned>(-1)};
         while(!queue.empty()){
             auto pos = queue.front();
             queue.pop();
@@ -47,24 +49,17 @@ public:
                 std::tie(exit, newPos) = move(dimX,dimY,pos,dir);
                 if(exit){
                     if(newPos.x != initialPos.x || newPos.y != initialPos.y)
-                        exitList.push_back(newPos); 
+                        if(newPos < bestExit)
+                            bestExit = newPos;
                 }
-                else if(checkValid(maze,newPos)){
+                else if(maze[newPos.x][newPos.y] == '.'){
                     newPos.cost += 1;
                     queue.push(newPos);
                     maze[newPos.x][newPos.y] = '+';
                 }
             }
         }
-        if(exitList.empty()) return -1;
-        std::sort(exitList.begin(), exitList.end());
-        return exitList[0].cost;
-    }
-
-    bool checkValid(const vector<vector<char>>& maze, const Position& pos){
-        if(maze[pos.x][pos.y] == '.')
-            return true;
-        return false;
+        return bestExit.cost;
     }
 
     tuple<bool,Position> move(const size_t& dimX,const size_t& dimY,const Position &pos,const Direction& dir){
@@ -113,6 +108,8 @@ int main(){
     vector<int> entrance3 = {0,0};
 
     Solution s;
-    s.nearestExit(maze3,entrance3);
+    std::cout<<s.nearestExit(maze,entrance)<<endl;
+    std::cout<<s.nearestExit(maze2,entrance2)<<endl;
+    std::cout<<s.nearestExit(maze3,entrance3)<<endl;
 }
 
