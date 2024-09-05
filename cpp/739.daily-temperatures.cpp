@@ -8,8 +8,8 @@
 #include <tuple>
 #include <iostream>
 using namespace std;
-// @lc code=start
-class Solution {
+
+class SolutionQiStack {
 public:
     /**
      * @brief 
@@ -33,6 +33,33 @@ public:
                 }
             }
             waitingList.emplace(i);
+        }
+        return results;
+    }
+};
+
+// @lc code=start
+class Solution {
+public:
+    /**
+     * @brief 
+     * 
+     * @param temperatures 
+     * @return vector<int> 
+     */
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+        int len = temperatures.size();
+        vector<int> results(len,0);
+        if(len < 2)
+            return results;
+        for(int i = len - 2; i >= 0; --i){
+            for(int j = i+1; j < len; j += results[j]){
+                if(temperatures[i] < temperatures[j]){
+                    results[i] = j - i;
+                    break;
+                }else if(results[j] == 0)
+                    break;
+            }
         }
         return results;
     }
