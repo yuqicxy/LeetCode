@@ -7,20 +7,8 @@
 #include <iostream>
 #include <queue>
 #include "common/TreeNode.h"
-// @lc code=start
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 using namespace std;
-class Solution {
+class BFSSolution {
 public:
     int maxLevelSum(TreeNode* root) {
         int level = 1;
@@ -52,13 +40,49 @@ public:
         return maxLevel;
     }
 };
+
+// @lc code=start
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+/**
+ * DFS
+ */
+class Solution {
+private:
+public:
+    int maxLevelSum(TreeNode* root) {
+        sumsEachLevel.clear();
+        DFS(root,0);
+        return distance(sumsEachLevel.begin(),max_element(sumsEachLevel.begin(),sumsEachLevel.end())) + 1;
+    }
+private:
+    void DFS(TreeNode* node, int level){
+        if(node==nullptr) return;
+        if(sumsEachLevel.size() < level + 1)
+            sumsEachLevel.resize(level + 1);
+        sumsEachLevel[level] += node->val;
+        DFS(node->left,level + 1);
+        DFS(node->right, level + 1);
+    }
+
+    vector<int> sumsEachLevel;
+};
 // @lc code=end
 
 int main(){
     Solution s;
-    TreeNode root{1,7,0,7,-8};
+    TreeNode root{1,0,0,7,8};
     cout << s.maxLevelSum(&root) << endl;
-    TreeNode root{1,7,0,7,-8};
-    cout << s.maxLevelSum(&root) << endl;
+    TreeNode root2{1,7,0,7,-8};
+    cout << s.maxLevelSum(&root2) << endl;
     
 }
