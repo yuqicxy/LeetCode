@@ -30,16 +30,16 @@ struct TreeNode {
                 currNode->right=node;
             }
         }
-    }
-
-private:
-    TreeNode* constructTree(const std::initializer_list<int> &list){
-    }
-
+    }    
+    
     ~TreeNode(){
         if(this->left != nullptr)
             delete this->left;
         if(this->right != nullptr)
             delete this->right;
+    }
+
+private:
+    TreeNode* constructTree(const std::initializer_list<int> &list){
     }
 };
