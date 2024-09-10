@@ -13,6 +13,7 @@ struct ListNode {
    
     ListNode(const std::initializer_list<int> &list){
         val = *list.begin();
+        next = nullptr;
         auto pre = this;
         for(auto itr = list.begin()+1; itr < list.end(); ++itr){
             auto node = new ListNode(*itr);
@@ -26,7 +27,9 @@ struct ListNode {
             delete next;
     }
 
-    friend std::ostream& operator<<(std::ostream& os, const ListNode* node){
+};
+
+std::ostream& operator<<(std::ostream& os, const ListNode* node){
         os<<"[";
         while (node != nullptr)
         {
@@ -35,5 +38,4 @@ struct ListNode {
         }
         os<<'\b'<<"]"<<std::endl;
         return os;
-    }
-};
+}
