@@ -43,7 +43,6 @@ public:
 
 void main(){
     Solution s;
-    // vector<vector<int>> connection = {{1,0},{1,2},{3,2},{3,4}};
     vector<vector<int>> connection = {{0,1},{1,3},{2,3},{4,0},{4,5}};
     cout << s.minReorder(6, connection) << endl;
     connection = {{1,0},{1,2},{3,2},{3,4}};
