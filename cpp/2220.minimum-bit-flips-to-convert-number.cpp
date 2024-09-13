@@ -13,12 +13,13 @@ class Solution {
 public:
     int minBitFlips(int start, int goal) {
         int n = start ^ goal;
+        // return bitset<sizeof(int) * 8>(n).count();
+
         int count = 0;
         while(n){
             n &= (n-1);
             count++;
         }
-
         return count;
     }
 };
@@ -26,14 +27,10 @@ public:
 
 int main(){
     Solution s;
-    cout <<"-10:" <<bitset<sizeof(int)>(-10)<<endl;
-    cout <<"10:" <<bitset<sizeof(int)>(10)<<endl;
-
-    cout <<" 7:" <<bitset<sizeof(int)>(7)<<endl;
-    cout <<" ^:" <<bitset<sizeof(int)>(10^7)<<endl;
-    cout <<" 3:" <<bitset<sizeof(int)>(3)<<endl;
-    cout <<" 4:" <<bitset<sizeof(int)>(4)<<endl;
-    cout <<" ^:" <<bitset<sizeof(int)>(3^4)<<endl;
-    cout << s.minBitFlips(10, 7) << endl;    
+    cout <<"-10:" <<bitset<sizeof(int) * 8>(-10).to_string()<<endl;
+    cout <<" 35:" <<bitset<sizeof(int) * 8>(35).to_string()<<endl;
+    cout <<" 22:" <<bitset<sizeof(int) * 8>(22).to_string()<<endl;
+    cout <<"  ^:" <<bitset<sizeof(int) * 8>(35^22).to_string()<<endl;
+    cout << s.minBitFlips(35, 22) << endl;    
     cout << s.minBitFlips( 3, 4) << endl;
 }
