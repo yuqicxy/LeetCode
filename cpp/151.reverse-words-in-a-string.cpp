@@ -14,7 +14,6 @@ class Solution {
 public:
     string reverseWords(string s) {
         reverse(s,0,s.size());
-
         size_t i = 0, j = 0;
         size_t n = s.size();
         while(i < n){
