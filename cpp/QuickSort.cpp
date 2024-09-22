@@ -1,5 +1,6 @@
 #include <vector>
 #include <iostream>
+#include <random>
 
 using namespace std;
 
@@ -7,10 +8,16 @@ class QuickSort{
 public:
     void quickSort(vector<int> &list, size_t start, size_t end){
         if(start < end){
-            size_t mid = partition(list, start, end);
+            size_t mid = randomPartion(list, start, end);
             quickSort(list, start, mid);
             quickSort(list, mid + 1, end);
         }
+    }
+
+    size_t randomPartion(vector<int> &list, size_t start, size_t end){
+        size_t randIndex = std::rand() / ((RAND_MAX + 1u) / (end - start)) + start;
+        swap(list[randIndex], list[end - 1]);
+        return partition(list, start, end);
     }
 
     size_t partition(vector<int> &list, size_t start, size_t end){
