@@ -11,8 +11,7 @@
 
 using namespace std;
 
-// @lc code=start
-class Solution {
+class TwoPointerSolution {
 public:
     int maxWidthRamp(vector<int>& nums) {
         vector<int> maxList(nums.size(), 0);
@@ -29,6 +28,30 @@ public:
             ans = max(ans, right-left);
             right++;
         }
+        return ans;
+    }
+};
+
+#include <algorithm>
+
+// @lc code=start
+class Solution {
+public:
+    int maxWidthRamp(vector<int>& nums) {
+        vector<int> indexes;
+        for(int i = 0; i < nums.size(); ++i){
+            indexes.push_back(i);
+        }
+        sort(indexes.begin(),indexes.end(), [&nums](int left, int right){
+            return nums[left] < nums[right];
+        });
+
+        int ans = 0, mn=INT_MAX;
+        for(int i = 0; i < nums.size(); ++i){
+            ans = max(ans, indexes[i] - mn);
+            mn = min(mn, indexes[i]);
+        }
+
         return ans;
     }
 };
