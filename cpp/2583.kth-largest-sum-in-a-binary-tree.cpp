@@ -26,23 +26,21 @@ using namespace std;
 class Solution {
 public:
     long long kthLargestLevelSum(TreeNode* root, int k) {
-        priority_queue<long long> ans;
-        stack<vector<TreeNode*>> nodeLevel;
-        nodeLevel.push({root});
-        while(!nodeLevel.empty()){
-            auto levelNodes = nodeLevel.top();
-            nodeLevel.pop();
+        priority_queue<long long, vector<long long>, greater<long long>> ans;
+        queue<TreeNode*> nodeQueue;
+        nodeQueue.push(root);
+        while(!nodeQueue.empty()){
+            size_t sz = nodeQueue.size();
             long long sum = 0;
-            vector<TreeNode*> levels;
-            for_each(levelNodes.begin(), levelNodes.end(), [&levels, &sum](TreeNode* node){
+            while(sz--){
+                auto node = nodeQueue.front();
+                nodeQueue.pop();
                 if(node->left != nullptr)
-                    levels.push_back(node->left);
+                    nodeQueue.push(node->left);
                 if(node->right != nullptr)
-                    levels.push_back(node->right);
+                    nodeQueue.push(node->right);
                 sum += node->val;
-            });
-            if(!levels.empty())
-                nodeLevel.push(std::move(levels));
+            }
             ans.push(sum);
             if(ans.size() > k)
                 ans.pop();
