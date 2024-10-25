@@ -1,11 +1,12 @@
-﻿
+
 file(GLOB sourceFiles "*.cpp")
 foreach(file ${sourceFiles})
     # message(${file})
     get_filename_component(problem ${file} NAME_WLE)
     message("add " ${problem})
     add_executable(${problem} ${file})
-    set_property(TARGET ${problem} PROPERTY CXX_STANDARD 20)
+    # set_property(TARGET ${problem} PROPERTY CXX_STANDARD 20)
+    target_compile_features(${problem} PUBLIC cxx_std_20)
     target_include_directories(${problem} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 endforeach()
 
