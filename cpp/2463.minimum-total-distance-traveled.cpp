@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <iostream>
 #include <unordered_map>
-
+#include <memory>
 using namespace std;
 
 // @lc code=start
@@ -18,23 +18,27 @@ public:
         sort(begin(factory),end(factory),[](auto left, auto right){
             return less<int>{}(left.front(), right.front());
         });
-        vector<vector<vector<long long>>> DPArray(robot.size(), vector<vector<long long>>(factory.size(), vector<long long>(robot.size(), -1)));
-        return dp(DPArray, robot, factory, 0, 0, 0);
+        size_t N = robot.size() * factory.size() * robot.size();
+        shared_ptr<long long[]> DPArray2(new long long[N]);
+        fill_n(DPArray2.get(),N,-1);
+        auto ans= dp(DPArray2.get(), robot, factory, 0, 0, 0);
+        return ans;
     }
 
-    long long dp(vector<vector<vector<long long>>>& DParray, vector<int>& robot, vector<vector<int>>& factory, int i, int j, int k){
+    long long dp(long long* DParray, vector<int>& robot, vector<vector<int>>& factory, int i, int j, int k){
         if(i == robot.size()) return 0;
         if(j == factory.size()) return numeric_limits<long long>::max();
-        if(DParray[i][j][k] != -1) return DParray[i][j][k];
-        long long option1 = dp(DParray, robot, factory, i ,    j + 1, 0);
+        size_t index = i * robot.size() * factory.size() + j * robot.size() + k;
+        if(DParray[index] != -1) return DParray[index];
+        long long option1 = dp(DParray, robot, factory, i, j + 1, 0);
         long long option2 = numeric_limits<long long>::max();
         if(factory[j][1] > k){
-            option2 = dp(DParray, robot, factory, i + 1, j,     k + 1);
+            option2 = dp(DParray, robot, factory, i + 1, j, k + 1);
             if(option2 < numeric_limits<long long>::max())
                 option2 += abs(factory[j][0] - robot[i]);
         }
-        DParray[i][j][k] = min(option1, option2);
-        return DParray[i][j][k];
+        DParray[index] = min(option1, option2);
+        return DParray[index];
     }
 };
 // @lc code=end
