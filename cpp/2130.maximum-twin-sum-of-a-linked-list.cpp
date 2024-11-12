@@ -5,9 +5,7 @@
  */
 
 #include "common/ListNode.h"
-
-#include <deque>
-
+#include <iostream>
 using namespace std;
 
 // @lc code=start
@@ -23,21 +21,35 @@ using namespace std;
  */
 class Solution {
 public:
-    int pairSum(ListNode* head) {
-        deque<ListNode*> dq;
-        while(head != nullptr){
-            dq.push_back(head);
-            head = head->next;
+    ListNode* reverseList(ListNode* curr, ListNode* prev = nullptr){
+        while(curr){
+            swap(curr->next, prev);
+            swap(prev != nullptr ? prev->next : prev, curr);
         }
+        return prev;
+    }
+
+    int pairSum(ListNode* head) {
+        ListNode *slow = head, *fast = head;
+        while(fast != nullptr && fast->next != nullptr){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        ListNode *right = reverseList(slow);
+        ListNode *left = head;
         int maxSum = 0;
-        while(!dq.empty()){
-            ListNode *left = dq.front(), *right = dq.back(); 
-            maxSum = max(maxSum, left->val + right->val);
-            dq.pop_front();
-            dq.pop_back();
+        while(left != nullptr && right != nullptr){
+            maxSum = max(left->val + right->val, maxSum);
+            left = left->next;
+            right = right->next;
         }
         return maxSum;
     }
 };
 // @lc code=end
 
+int main(){
+    ListNode node{5,4,2,1};
+    Solution s;
+    cout << s.pairSum(&node) <<endl;
+}
