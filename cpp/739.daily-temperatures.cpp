@@ -38,8 +38,7 @@ public:
     }
 };
 
-// @lc code=start
-class Solution {
+class StupidSolution {
 public:
     /**
      * @brief 
@@ -62,6 +61,29 @@ public:
             }
         }
         return results;
+    }
+};
+
+// @lc code=start
+class Solution {
+public:
+    /**
+     * @brief 
+     * 
+     * @param temperatures 
+     * @return vector<int> 
+     */
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+        deque<int> dq;
+        vector<int> ans(temperatures.size(), 0);
+        for(int i = 0; i < temperatures.size(); ++i){
+            while(!dq.empty() && temperatures[dq.back()] < temperatures[i]){
+                ans[dq.back()] = i - dq.back();
+                dq.pop_back();
+            }
+            dq.push_back(i);
+        }
+        return ans;
     }
 };
 // @lc code=end
