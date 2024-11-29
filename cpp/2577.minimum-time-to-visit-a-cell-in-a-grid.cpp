@@ -13,38 +13,34 @@ using namespace std;
 class Solution {
 public:
     int minimumTime(vector<vector<int>>& grid) {
-        int ans = INT_MAX;
-        int M = grid.size();
-        int N = grid.front().size();
         if(grid[0][1] > 1 && grid[1][0] > 1)
             return -1;
+        int M = grid.size();
+        int N = grid.front().size();
         vector<int> directions{1,0,-1,0,1};
-        vector<vector<int>> nodes(M,vector<int>(N,INT_MAX));
-        nodes[0][0] = 0;
-        priority_queue<vector<int>, vector<vector<int>>, greater<vector<int>>> pq;
+        vector<vector<bool>> founded(M, vector<bool>(N, false));
+        founded[0][0]=false;
+        priority_queue<vector<int>, vector<vector<int>>, greater<>> pq;
         pq.push({0,0,0});
         while(!pq.empty()){
             int time = pq.top()[0];
             int x = pq.top()[1];
             int y = pq.top()[2];
             pq.pop();
+            if (x == M - 1 && y == N - 1) return time;
+            if(founded[x][y]) continue;
+            founded[x][y] = true;
             for(int i = 0; i < directions.size() - 1; ++i){
                 int newx = x + directions[i];
                 int newy = y + directions[i + 1];
-                if(min(newx,newy) >= 0 && newx < M && newy< N){
-                    int newtime = 0;
-                    if(grid[newx][newy] > time + 1)
-                        newtime = (grid[newx][newy] - time) % 2 ? grid[newx][newy] : grid[newx][newy] + 1;
-                    else if(grid[newx][newy] <= time + 1)
-                        newtime = time + 1;
-                    if(nodes[newx][newy] > newtime){
-                        nodes[newx][newy] = newtime;
-                        pq.push({newtime, newx, newy});
-                    }
+                if(min(newx,newy) >= 0 && newx < M && newy< N && !founded[newx][newy]){
+                    int wait = (grid[newx][newy] - time) % 2 == 0;
+                    int newtime = max(grid[newx][newy] + wait, time + 1);
+                    pq.push({newtime, newx, newy});
                 }
             }
         }
-        return nodes[M-1][N-1];
+        return -1;
     }
 };
 // @lc code=end
